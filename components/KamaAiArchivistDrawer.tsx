@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
+import { useLanguage } from '@/lib/LanguageContext';
 import { 
   X, 
   Sparkles, 
@@ -34,18 +35,69 @@ export function KamaAiArchivistDrawer({
   onClose,
   onSelectEntity
 }: KamaAiArchivistDrawerProps) {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Salutations. Je suis l'Archiviste KAMA, votre guide documentaire. Je peux vous éclairer sur les civilisations africaines, les figures majeures de la diaspora, les traités historiques ou les sources primaires. Quelle période ou personnalité souhaitez-vous explorer ?",
-      suggestedTopics: [
-        "L'impact économique du voyage de Mansa Moussa",
-        "La Charte de Kouroukan Fouga de 1236",
-        "Les réformes de Thomas Sankara",
-        "La stratégie de résistance de la Reine Nzinga"
-      ]
+  const { language, t } = useLanguage();
+
+  const getInitialMessage = (): Message => {
+    switch (language) {
+      case 'en':
+        return {
+          role: 'assistant',
+          content: "Greetings. I am the KAMA Archivist, your research guide. I can illuminate African civilizations, major diaspora figures, historical treaties, and primary manuscripts. Which era or personality would you like to explore?",
+          suggestedTopics: [
+            "Economic impact of Mansa Musa's pilgrimage",
+            "The Manden Charter of 1236",
+            "Thomas Sankara's revolutionary reforms",
+            "Queen Nzinga's resistance strategy"
+          ]
+        };
+      case 'es':
+        return {
+          role: 'assistant',
+          content: "Saludos. Soy el Archivero KAMA, su guía documental. Puedo orientarle sobre civilizaciones africanas, figuras históricas de la diáspora, tratados y fuentes primarias. ¿Qué período o personalidad desea explorar?",
+          suggestedTopics: [
+            "Impacto económico del viaje de Mansa Musa",
+            "La Carta de Kouroukan Fouga de 1236",
+            "Las reformas de Thomas Sankara",
+            "La estrategia de la Reina Nzinga"
+          ]
+        };
+      case 'pt':
+        return {
+          role: 'assistant',
+          content: "Saudações. Sou o Arquivista KAMA, seu guia documental. Posso esclarecer sobre civilizações africanas, figuras da diáspora, tratados e fontes primárias. Qual período ou líder gostaria de explorar?",
+          suggestedTopics: [
+            "Impacto econômico da viagem de Mansa Musa",
+            "A Carta de Manden de 1236",
+            "As reformas de Thomas Sankara",
+            "A resistência da Rainha Nzinga"
+          ]
+        };
+      case 'ar':
+        return {
+          role: 'assistant',
+          content: "تحياتي. أنا الأرشيفي كاما، مرشدك التاريخي. يمكنني إرشادك حول الحضارات الأفريقية، شخصيات الدياسبورا البارزة، المعاهدات والمخطوطات الأصلية. ما هي الحقبة أو الشخصية التي تود استكشافها؟",
+          suggestedTopics: [
+            "الأثر الاقتصادي لرحلة منسا موسى عام 1324",
+            "ميثاق كوروكان فوغا لعام 1236",
+            "إصلاحات توماس سانكارا",
+            "استراتيجية الملكة نزينغا في المقاومة"
+          ]
+        };
+      default:
+        return {
+          role: 'assistant',
+          content: "Salutations. Je suis l'Archiviste KAMA, votre guide documentaire. Je peux vous éclairer sur les civilisations africaines, les figures majeures de la diaspora, les traités historiques ou les sources primaires. Quelle période ou personnalité souhaitez-vous explorer ?",
+          suggestedTopics: [
+            "L'impact économique du voyage de Mansa Moussa",
+            "La Charte de Kouroukan Fouga de 1236",
+            "Les réformes de Thomas Sankara",
+            "La stratégie de résistance de la Reine Nzinga"
+          ]
+        };
     }
-  ]);
+  };
+
+  const [messages, setMessages] = useState<Message[]>([getInitialMessage()]);
   const [inputQuery, setInputQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +116,7 @@ export function KamaAiArchivistDrawer({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: textToSend,
-          language: 'fr',
+          language: language,
         })
       });
 
@@ -81,12 +133,14 @@ export function KamaAiArchivistDrawer({
       };
 
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err: any) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: "Pardonnez cette interruption. L'accès aux archives a rencontré une latence momentanée. Veuillez reformuler votre requête historique."
+          content: language === 'en'
+            ? "Pardon this interruption. Access to archives encountered momentary latency. Please rephrase your historical query."
+            : "Pardonnez cette interruption. L'accès aux archives a rencontré une latence momentanée. Veuillez reformuler votre requête historique."
         }
       ]);
     } finally {
@@ -122,13 +176,13 @@ export function KamaAiArchivistDrawer({
               </div>
               <div>
                 <h3 className="text-base font-bold text-[#121210] flex items-center gap-2">
-                  L’Archiviste KAMA
+                  {t('archivist.title', 'L’Archiviste KAMA')}
                   <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#1F392E]/10 text-[#1F392E]">
-                    IA Historienne
+                    {t('archivist.badge', 'IA Historienne')}
                   </span>
                 </h3>
                 <p className="text-xs text-[#77746A]">
-                  Réponses fondées sur les sources académiques vérifiées
+                  {t('archivist.desc', 'Réponses fondées sur les sources académiques vérifiées')}
                 </p>
               </div>
             </div>
@@ -161,7 +215,7 @@ export function KamaAiArchivistDrawer({
                   {msg.sources && msg.sources.length > 0 && (
                     <div className="mt-3 pt-3 border-t border-stone-200/80 font-sans text-xs text-[#77746A]">
                       <p className="font-bold text-[#1F392E] flex items-center gap-1.5 mb-1">
-                        <ShieldCheck className="w-3.5 h-3.5" /> Sources académiques citées :
+                        <ShieldCheck className="w-3.5 h-3.5" /> {t('archivist.sourcesCited', 'Sources académiques citées :')}
                       </p>
                       <ul className="list-disc list-inside space-y-0.5">
                         {msg.sources.map((src, sIdx) => (
@@ -193,7 +247,7 @@ export function KamaAiArchivistDrawer({
             {isLoading && (
               <div className="flex items-center gap-2 text-xs text-[#77746A] p-4 bg-white rounded-2xl border border-stone-200">
                 <Loader2 className="w-4 h-4 animate-spin text-[#F2B844]" />
-                <span>L’Archiviste consulte les manuscrits et corpus UNESCO...</span>
+                <span>{t('archivist.consulting', 'L’Archiviste consulte les manuscrits et corpus UNESCO...')}</span>
               </div>
             )}
           </div>
@@ -209,7 +263,7 @@ export function KamaAiArchivistDrawer({
             >
               <input
                 type="text"
-                placeholder="Posez une question sur une date, un royaume, un texte..."
+                placeholder={t('archivist.inputPlaceholder', 'Posez une question sur une date, un royaume, un texte...')}
                 value={inputQuery}
                 onChange={(e) => setInputQuery(e.target.value)}
                 className="flex-1 px-4 py-3 rounded-full border border-stone-200 text-xs sm:text-sm bg-[#FAF9F5] focus:outline-none focus:ring-2 focus:ring-[#F2B844]"

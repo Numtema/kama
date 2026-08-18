@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { LanguageProvider } from '@/lib/LanguageContext';
 
 const degular = localFont({
   src: [
@@ -98,7 +99,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${degular.variable} font-sans`}>
       <body className={`${degular.className} antialiased`} suppressHydrationWarning>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

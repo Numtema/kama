@@ -3,19 +3,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
+import { LanguageSelector } from './LanguageSelector';
+import { useLanguage } from '@/lib/LanguageContext';
 import { 
   Search, 
   Menu, 
   X, 
   Sparkles, 
-  Bookmark, 
   Layers, 
   Clock, 
-  Video, 
   Compass, 
   UploadCloud, 
-  Bot,
-  Globe2,
   ChevronDown,
   Users,
   Building2,
@@ -58,6 +56,7 @@ export function Navbar({
   onSelectEntity,
   onExploreCategory
 }: NavbarProps) {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isExplorePanelOpen, setIsExplorePanelOpen] = useState(false);
@@ -105,18 +104,18 @@ export function Navbar({
 
   // Top-level menu: Discover, Explorer, Timeline, Media Library
   const topMenuItems = [
-    { id: 'decouvrir', label: 'Découvrir', target: 'decouvrir' },
-    { id: 'explorer', label: 'Explorer', isMegaDropdown: true },
-    { id: 'chronologie', label: 'Chronologie', target: 'chronologie' },
-    { id: 'regarder', label: 'Médiathèque', target: 'regarder' },
+    { id: 'decouvrir', label: t('nav.discover', 'Découvrir'), target: 'decouvrir' },
+    { id: 'explorer', label: t('nav.explore', 'Explorer'), isMegaDropdown: true },
+    { id: 'chronologie', label: t('nav.timeline', 'Chronologie'), target: 'chronologie' },
+    { id: 'regarder', label: t('nav.media', 'Médiathèque'), target: 'regarder' },
   ];
 
   // The 11 mandatory categories for the Explorer panel
   const explorerCategories = [
     { 
       id: 'people', 
-      label: 'Personnages', 
-      desc: 'Souverains, stratèges, savants & héros', 
+      label: t('cat.people.label', 'Personnages'), 
+      desc: t('cat.people.desc', 'Souverains, stratèges, savants & héros'), 
       icon: Users,
       color: 'text-[#A65438]',
       bg: 'bg-[#A65438]/10',
@@ -124,8 +123,8 @@ export function Navbar({
     },
     { 
       id: 'civilizations', 
-      label: 'Civilisations', 
-      desc: 'Mali, Songhaï, Kongo, Aksoum, Kemet', 
+      label: t('cat.civilizations.label', 'Civilisations'), 
+      desc: t('cat.civilizations.desc', 'Mali, Songhaï, Kongo, Aksoum, Kemet'), 
       icon: Building2,
       color: 'text-[#F2B844]',
       bg: 'bg-[#F2B844]/15',
@@ -133,8 +132,8 @@ export function Navbar({
     },
     { 
       id: 'countries', 
-      label: 'Territoires', 
-      desc: 'Territoires ancestraux & géopolitique', 
+      label: t('cat.countries.label', 'Territoires'), 
+      desc: t('cat.countries.desc', 'Territoires ancestraux & géopolitique'), 
       icon: MapPin,
       color: 'text-[#1F392E]',
       bg: 'bg-[#1F392E]/10',
@@ -142,8 +141,8 @@ export function Navbar({
     },
     { 
       id: 'eras', 
-      label: 'Époques', 
-      desc: 'Antiquité, Moyen Âge, Indépendances', 
+      label: t('cat.eras.label', 'Époques'), 
+      desc: t('cat.eras.desc', 'Antiquité, Moyen Âge, Indépendances'), 
       icon: Calendar,
       color: 'text-amber-700',
       bg: 'bg-amber-100',
@@ -151,26 +150,17 @@ export function Navbar({
     },
     { 
       id: 'events', 
-      label: 'Événements', 
-      desc: '1236, 1791, 1804, 1896, 1960, 1983', 
+      label: t('cat.events.label', 'Événements'), 
+      desc: t('cat.events.desc', '1236, 1791, 1804, 1896, 1960, 1983'), 
       icon: Zap,
       color: 'text-red-700',
       bg: 'bg-red-100',
       target: 'chronologie'
     },
     { 
-      id: 'cultures', 
-      label: 'Cultures', 
-      desc: 'Cosmogonies, Ubuntu, griots & mémoires', 
-      icon: Sparkle,
-      color: 'text-purple-700',
-      bg: 'bg-purple-100',
-      target: 'stories'
-    },
-    { 
-      id: 'sciences', 
-      label: 'Sciences', 
-      desc: 'Astronomie, manuscrits & métallurgie', 
+      id: 'knowledge', 
+      label: t('cat.knowledge.label', 'Savoirs & Sciences'), 
+      desc: t('cat.knowledge.desc', 'Manuscrits de Tombouctou, astronomie Dogon'), 
       icon: Atom,
       color: 'text-cyan-800',
       bg: 'bg-cyan-100',
@@ -178,17 +168,35 @@ export function Navbar({
     },
     { 
       id: 'arts', 
-      label: 'Arts', 
-      desc: 'Bronzes, masques, Négritude & musiques', 
+      label: t('cat.arts.label', 'Arts & Musique'), 
+      desc: t('cat.arts.desc', 'Bronzes d’Ife, blues, rumba, highlife'), 
       icon: Palette,
       color: 'text-rose-700',
       bg: 'bg-rose-100',
       target: 'decouvrir'
     },
     { 
+      id: 'philosophy', 
+      label: t('cat.philosophy.label', 'Pensées & Philosophies'), 
+      desc: t('cat.philosophy.desc', 'Ubuntu, Maât, négritude, panafricanisme'), 
+      icon: Sparkle,
+      color: 'text-purple-700',
+      bg: 'bg-purple-100',
+      target: 'stories'
+    },
+    { 
+      id: 'spirituality', 
+      label: t('cat.spirituality.label', 'Spiritualité & Mythes'), 
+      desc: t('cat.spirituality.desc', 'Orishas, cosmogonies, traditions orales'), 
+      icon: Flame,
+      color: 'text-amber-600',
+      bg: 'bg-amber-100',
+      target: 'explorer'
+    },
+    { 
       id: 'politics', 
-      label: 'Politique', 
-      desc: 'Panafricanisme, traités & chartes', 
+      label: t('cat.politics.label', 'Politique & Alliances'), 
+      desc: t('cat.politics.desc', 'Panafricanisme, traités & chartes'), 
       icon: Scale,
       color: 'text-emerald-800',
       bg: 'bg-emerald-100',
@@ -196,22 +204,13 @@ export function Navbar({
     },
     { 
       id: 'resistances', 
-      label: 'Résistances', 
-      desc: 'Marronnage, révoltes & anticolonialisme', 
+      label: t('cat.resistances.label', 'Résistances & Marronnage'), 
+      desc: t('cat.resistances.desc', 'Marronnage, révoltes & anticolonialisme'), 
       icon: Flame,
       color: 'text-orange-700',
       bg: 'bg-orange-100',
       target: 'parcours'
     },
-    { 
-      id: 'diasporas', 
-      label: 'Diasporas', 
-      desc: 'Caraïbes, Amériques & mondes noirs', 
-      icon: Plane,
-      color: 'text-blue-700',
-      bg: 'bg-blue-100',
-      target: 'explorer'
-    }
   ];
 
   const handleCategoryClick = (cat: typeof explorerCategories[0]) => {
@@ -288,7 +287,7 @@ export function Navbar({
                               <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[#F2B844]" />
                                 <h4 className="text-xs uppercase font-bold tracking-widest text-[#121210]">
-                                  Explorer les 11 Univers KAMA
+                                  {t('nav.exploreUniverses', 'Explorer les 11 Univers KAMA')}
                                 </h4>
                               </div>
 
@@ -300,7 +299,7 @@ export function Navbar({
                                   }}
                                   className="text-[11px] font-bold text-[#A65438] hover:text-[#743825] flex items-center gap-1 bg-[#A65438]/10 px-2.5 py-1 rounded-full transition-colors"
                                 >
-                                  <span>Graphe de Connaissances</span>
+                                  <span>{t('nav.graphLink', 'Graphe de Connaissances')}</span>
                                   <ArrowRight className="w-3 h-3" />
                                 </button>
                               </div>
@@ -336,7 +335,7 @@ export function Navbar({
                             <div className="mt-4 pt-3 border-t border-[#121210]/8 flex items-center justify-between text-[11px] text-[#77746A]">
                               <span className="flex items-center gap-1.5">
                                 <ShieldCheck className="w-3.5 h-3.5 text-[#1F392E]" />
-                                Corpus sourcé : UNESCO, archives nationales & manuscrits originaux.
+                                {t('nav.sourcesBadge', 'Corpus sourcé : UNESCO, archives nationales & manuscrits originaux.')}
                               </span>
                               <button
                                 onClick={() => {
@@ -345,7 +344,7 @@ export function Navbar({
                                 }}
                                 className="font-bold text-[#121210] hover:text-[#A65438] underline"
                               >
-                                Recherche avancée ⌘K
+                                {t('nav.advancedSearch', 'Recherche avancée ⌘K')}
                               </button>
                             </div>
                           </motion.div>
@@ -372,19 +371,22 @@ export function Navbar({
               })}
             </div>
 
-            {/* Right Action Tools: Search Icon, Archiviste IA, Contribuer */}
+            {/* Right Action Tools: Language Selector, Search Icon, Archiviste IA */}
             <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* Language Selector Dropdown */}
+              <LanguageSelector />
+
               {/* Search Button (with Search Icon) */}
               <button
                 onClick={onOpenSearch}
                 className="flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-white hover:bg-stone-50 text-[#121210] border border-[#121210]/10 shadow-sm text-xs font-semibold transition-all group min-h-[44px]"
-                title="Rechercher (⌘K)"
-                aria-label="Ouvrir la recherche"
+                title={t('nav.search', 'Rechercher')}
+                aria-label={t('nav.search', 'Rechercher')}
               >
                 <Search className="w-4 h-4 text-[#A65438] group-hover:scale-110 transition-transform" />
-                <span className="hidden sm:inline">Rechercher</span>
+                <span className="hidden sm:inline">{t('nav.search', 'Rechercher')}</span>
                 <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] font-mono text-stone-500 bg-stone-100 rounded border border-stone-200">
-                  ⌘K
+                  {t('nav.searchShortcut', '⌘K')}
                 </kbd>
               </button>
 
@@ -392,10 +394,10 @@ export function Navbar({
               <button
                 onClick={handleAssistant}
                 className="hidden sm:flex px-3 py-2 rounded-full bg-[#F2B844]/20 hover:bg-[#F2B844]/35 text-[#743825] border border-[#F2B844]/40 text-xs font-bold items-center gap-1.5 transition-all min-h-[44px]"
-                title="Archiviste IA KAMA"
+                title={t('nav.archivist', 'Archiviste IA')}
               >
                 <Sparkles className="w-4 h-4 text-[#A65438]" />
-                <span className="hidden xl:inline">Archiviste IA</span>
+                <span className="hidden xl:inline">{t('nav.archivist', 'Archiviste IA')}</span>
               </button>
 
               {/* Mobile Hamburger Menu Toggle */}
@@ -446,10 +448,10 @@ export function Navbar({
                           >
                             <span className="flex items-center gap-2">
                               <Compass className="w-4 h-4 text-[#A65438]" />
-                              <span>Explorer les 11 Univers KAMA</span>
+                              <span>{t('nav.exploreUniverses', 'Explorer les 11 Univers KAMA')}</span>
                             </span>
                             <span className="text-[10px] font-mono text-[#A65438] bg-[#A65438]/10 px-2 py-0.5 rounded-full">
-                              11 rubriques →
+                              {t('nav.mobileExplore', '11 rubriques →')}
                             </span>
                           </button>
                         </div>
@@ -471,6 +473,11 @@ export function Navbar({
 
                 {/* Quick actions in mobile menu */}
                 <div className="pt-3 border-t border-[#121210]/10 flex flex-col gap-2">
+                  <div className="flex items-center justify-between px-1 py-1">
+                    <span className="text-xs font-semibold text-[#121210]">Langue / Language :</span>
+                    <LanguageSelector compact={true} />
+                  </div>
+
                   <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
@@ -479,7 +486,7 @@ export function Navbar({
                     className="w-full py-3 px-4 rounded-2xl bg-[#F2B844]/20 hover:bg-[#F2B844]/30 text-[#743825] text-xs font-bold flex items-center justify-center gap-2 border border-[#F2B844]/40 min-h-[46px]"
                   >
                     <Sparkles className="w-4 h-4 text-[#A65438]" />
-                    <span>Lancer l’Archiviste IA KAMA</span>
+                    <span>{t('nav.launchArchivist', 'Lancer l’Archiviste IA KAMA')}</span>
                   </button>
 
                   <button
@@ -490,7 +497,7 @@ export function Navbar({
                     className="w-full py-3 px-4 rounded-2xl bg-white text-[#121210] text-xs font-bold flex items-center justify-center gap-2 border border-[#121210]/10 min-h-[46px]"
                   >
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                    <span>Graphe de Connaissances Dynamique</span>
+                    <span>{t('nav.graphLink', 'Graphe de Connaissances')}</span>
                   </button>
 
                   <button
@@ -502,7 +509,7 @@ export function Navbar({
                     className="w-full py-3 px-4 rounded-2xl bg-[#1F392E]/10 text-[#1F392E] text-xs font-bold flex items-center justify-center gap-2 border border-[#1F392E]/20 min-h-[46px]"
                   >
                     <UploadCloud className="w-4 h-4" />
-                    <span>Contribuer une archive (Vercel Blob)</span>
+                    <span>{t('nav.contribute', 'Contribuer une archive (Vercel Blob)')}</span>
                   </button>
                 </div>
               </motion.div>
@@ -522,7 +529,7 @@ export function Navbar({
           className="flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all min-h-[48px] min-w-[56px] active:scale-95 text-[#121210]"
         >
           <Layers className="w-5 h-5 text-[#A65438]" />
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Découvrir</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{t('nav.discover', 'Découvrir')}</span>
         </button>
 
         {/* 2. Explorer (Opens Mobile Univers Sheet) */}
@@ -531,7 +538,7 @@ export function Navbar({
           className="flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all min-h-[48px] min-w-[56px] active:scale-95 text-[#121210]"
         >
           <Compass className="w-5 h-5 text-[#F2B844]" />
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Explorer</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{t('nav.explore', 'Explorer')}</span>
         </button>
 
         {/* 3. Chronologie */}
@@ -540,7 +547,7 @@ export function Navbar({
           className="flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all min-h-[48px] min-w-[56px] active:scale-95 text-[#121210]"
         >
           <Clock className="w-5 h-5 text-stone-700" />
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Chronologie</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{t('nav.timeline', 'Chronologie')}</span>
         </button>
 
         {/* 4. Recherche (⌘K) */}
@@ -549,7 +556,7 @@ export function Navbar({
           className="flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all min-h-[48px] min-w-[56px] active:scale-95 text-[#121210]"
         >
           <Search className="w-5 h-5 text-[#A65438]" />
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Recherche</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{t('nav.search', 'Recherche')}</span>
         </button>
 
         {/* 5. Archiviste IA */}
@@ -561,7 +568,7 @@ export function Navbar({
             <Sparkles className="w-5 h-5 text-[#A65438]" />
             <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#F2B844] animate-pulse" />
           </div>
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Archiviste</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{t('nav.archivist', 'Archiviste')}</span>
         </button>
       </nav>
 
@@ -594,7 +601,7 @@ export function Navbar({
                   <div className="flex items-center gap-2">
                     <KamaSun size={20} animate={true} />
                     <h3 className="text-sm font-bold text-[#121210] font-sans uppercase tracking-wider">
-                      Les 11 Univers KAMA
+                      {t('nav.exploreUniverses', 'Les 11 Univers KAMA')}
                     </h3>
                   </div>
 
@@ -642,7 +649,7 @@ export function Navbar({
                     className="w-full py-3 px-4 rounded-2xl bg-[#121210] text-[#FAF9F5] text-xs font-bold flex items-center justify-center gap-2 transition-colors min-h-[44px]"
                   >
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Explorer le Graphe de Connaissances →</span>
+                    <span>{t('nav.graphLink', 'Explorer le Graphe de Connaissances')} →</span>
                   </button>
                 </div>
               </motion.div>

@@ -4,8 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
-import { ArrowRight, Compass, Sparkles, BookOpen, Globe2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { EntityType } from '@/lib/types';
+import { useLanguage } from '@/lib/LanguageContext';
 
 interface HeroSectionProps {
   onExploreClick: () => void;
@@ -18,6 +19,8 @@ export function HeroSection({
   onOpenSearch,
   onSelectEntity
 }: HeroSectionProps) {
+  const { t } = useLanguage();
+
   const quickTags = [
     { label: 'Mansa Moussa 1324', type: 'person' as EntityType, id: 'mansa-musa' },
     { label: 'Révolution Haïtienne 1804', type: 'event' as EntityType, id: 'revolution-haitienne-1804' },
@@ -46,25 +49,24 @@ export function HeroSection({
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#121210]/10 shadow-xs mb-6">
               <KamaSun size={18} animate={true} />
               <span className="text-xs font-semibold uppercase tracking-wider text-[#121210]">
-                The Living Archive • Bibliothèque Vivante
+                {t('hero.badge', 'Bibliothèque Vivante & Patrimoine Universel')}
               </span>
             </div>
 
             {/* Monumental Headline */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#121210] font-sans uppercase leading-[1.04] max-w-2xl">
-              L’histoire noire <br />
-              n’a jamais été <br />
+              {t('hero.titleLine1', 'L’histoire noire')} <br />
               <span className="relative inline-block text-[#A65438]">
-                une note
+                {t('hero.titleLine2', 'Restituée avec Rigueur & Clarté.')}
                 <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none" fill="none">
                   <path d="M0 5C20 2 80 2 100 5" stroke="#F2B844" strokeWidth="4" strokeLinecap="round" />
                 </svg>
-              </span> de bas de page.
+              </span>
             </h1>
 
             {/* Subheading */}
             <p className="mt-6 text-base sm:text-lg text-[#46443D] leading-relaxed max-w-xl font-normal">
-              Explorez des millénaires d’histoires, de civilisations, de pensées, de révolutions et de créations reliées dans un <strong>graphe vivant de connaissances</strong>.
+              {t('hero.description', 'Explorez des millénaires d’histoires, de civilisations, de pensées, de révolutions et de créations reliées dans un graphe vivant de connaissances.')}
             </p>
 
             {/* Primary & Secondary Action Buttons */}
@@ -73,7 +75,7 @@ export function HeroSection({
                 onClick={onExploreClick}
                 className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#121210] hover:bg-[#2B2925] text-[#FAF9F5] text-sm font-semibold tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all group"
               >
-                <span>Commencer à explorer</span>
+                <span>{t('hero.ctaExplore', 'Commencer à explorer')}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -81,14 +83,14 @@ export function HeroSection({
                 onClick={onOpenSearch}
                 className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white hover:bg-stone-50 text-[#121210] border border-[#121210]/12 text-sm font-semibold shadow-xs flex items-center justify-center gap-2 transition-all"
               >
-                <span>Recherche dans l’archive (⌘K)</span>
+                <span>{t('nav.advancedSearch', 'Recherche dans l’archive (⌘K)')}</span>
               </button>
             </div>
 
             {/* Quick Exploration Chips */}
             <div className="mt-10 pt-6 border-t border-[#121210]/8 w-full">
               <p className="text-[11px] font-bold uppercase tracking-widest text-[#77746A] mb-3">
-                Accès direct aux grands repères :
+                {t('timeline.title', 'Accès direct aux grands repères :')}
               </p>
               <div className="flex flex-wrap gap-2">
                 {quickTags.map((tag) => (
@@ -134,7 +136,7 @@ export function HeroSection({
               <div className="relative z-10 flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F2B844] text-[#121210] shadow-sm">
                   <KamaSun size={14} color="#121210" />
-                  Dossier à l’Honneur
+                  {t('discover.featured', 'Dossier à l’Honneur')}
                 </span>
 
                 <span className="text-xs font-mono text-white/70 bg-black/40 px-2.5 py-0.5 rounded-full backdrop-blur-xs border border-white/10">
@@ -160,7 +162,7 @@ export function HeroSection({
                     <span>Sources Ibn Battuta & Al-Umari</span>
                   </div>
                   <span className="text-xs font-semibold text-[#F2B844] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                    Lire le dossier →
+                    {t('discover.readStory', 'Lire le dossier')} →
                   </span>
                 </div>
               </div>
@@ -180,7 +182,7 @@ export function HeroSection({
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-[#121210] group-hover:text-[#A65438] transition-colors line-clamp-1">
-                    Haïti : Première République Noire
+                    Haïti : 1804
                   </h4>
                   <p className="text-[10px] text-[#77746A] line-clamp-1">
                     Révolution & liberté inconditionnelle

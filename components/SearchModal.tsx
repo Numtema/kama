@@ -24,6 +24,7 @@ import {
   KAMA_PATHS 
 } from '@/lib/kama-data';
 import { EntityType } from '@/lib/types';
+import { useLanguage } from '@/lib/LanguageContext';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -32,6 +33,7 @@ interface SearchModalProps {
 }
 
 export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProps) {
+  const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -132,7 +134,7 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Rechercher une personne, empire, date, révolution, archive..."
+                  placeholder={t('search.placeholder', 'Rechercher une personne, empire, date, révolution, archive...')}
                   className="w-full pl-12 pr-12 py-2 text-base md:text-lg bg-transparent text-[#121210] placeholder-[#77746A] focus:outline-none"
                 />
                 {query ? (
@@ -154,12 +156,12 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
               {/* Filter Pills */}
               <div className="flex items-center gap-2 p-3 px-5 overflow-x-auto border-b border-[#121210]/6 bg-[#F5F2EA]/70 scrollbar-none text-xs">
                 {[
-                  { id: 'all', label: 'Tout explorer' },
-                  { id: 'person', label: 'Personnes', icon: User },
-                  { id: 'event', label: 'Événements', icon: Calendar },
-                  { id: 'civilization', label: 'Civilisations', icon: Landmark },
-                  { id: 'article', label: 'Dossiers', icon: BookOpen },
-                  { id: 'video', label: 'Regarder', icon: Video },
+                  { id: 'all', label: t('search.all', 'Tout explorer') },
+                  { id: 'person', label: t('nav.people', 'Personnes'), icon: User },
+                  { id: 'event', label: t('search.events', 'Événements'), icon: Calendar },
+                  { id: 'civilization', label: t('nav.civilizations', 'Civilisations'), icon: Landmark },
+                  { id: 'article', label: t('search.dossiers', 'Dossiers'), icon: BookOpen },
+                  { id: 'video', label: t('nav.watch', 'Regarder'), icon: Video },
                 ].map((f) => {
                   const Icon = f.icon;
                   const isActive = activeFilter === f.id;
@@ -187,9 +189,9 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                     <div className="w-12 h-12 rounded-full bg-[#F2B844]/20 flex items-center justify-center mx-auto mb-3 text-[#A65438]">
                       <Sparkles className="w-6 h-6" />
                     </div>
-                    <p className="text-sm font-semibold text-[#121210]">Explorez la bibliothèque vivante</p>
+                    <p className="text-sm font-semibold text-[#121210]">{t('search.exploreArchive', 'Explorez la bibliothèque vivante')}</p>
                     <p className="text-xs text-[#77746A] mt-1 max-w-sm mx-auto">
-                      Tapez un mot-clé comme « Thomas Sankara », « Empire du Mali », « Haïti 1804 », ou explorez nos suggestions ci-dessous.
+                      {t('search.helper', 'Tapez un mot-clé comme « Thomas Sankara », « Empire du Mali », « Haïti 1804 », ou explorez nos suggestions.')}
                     </p>
 
                     <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -206,9 +208,9 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                   </div>
                 ) : totalResults === 0 ? (
                   <div className="py-12 text-center">
-                    <p className="text-base font-semibold text-[#121210]">Aucun élément trouvé pour « {query} »</p>
+                    <p className="text-base font-semibold text-[#121210]">{t('search.noResults', 'Aucun élément trouvé pour')} « {query} »</p>
                     <p className="text-xs text-[#77746A] mt-1">
-                      Essayez un autre mot-clé ou demandez à notre archiviste IA.
+                      {t('search.noResultsSub', 'Essayez un autre mot-clé ou demandez à notre archiviste IA.')}
                     </p>
                   </div>
                 ) : (
