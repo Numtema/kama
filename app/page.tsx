@@ -106,7 +106,7 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         {/* 1. Monumental Hero Section */}
         <HeroSection
           onExploreClick={() => {
@@ -165,10 +165,10 @@ export default function HomePage() {
         onOpenArchivist={() => setIsArchivistOpen(true)}
       />
 
-      {/* Floating AI Archivist Quick Trigger */}
+      {/* Floating AI Archivist Quick Trigger (Desktop only, mobile has dock) */}
       <button
         onClick={() => setIsArchivistOpen(true)}
-        className="fixed bottom-6 right-6 z-40 px-5 py-3 rounded-full bg-[#121210] hover:bg-[#2B2925] text-white shadow-xl hover:shadow-2xl border border-stone-700 flex items-center gap-2.5 transition-all group scale-100 hover:scale-105"
+        className="hidden md:flex fixed bottom-6 right-6 z-40 px-5 py-3 rounded-full bg-[#121210] hover:bg-[#2B2925] text-white shadow-xl hover:shadow-2xl border border-stone-700 items-center gap-2.5 transition-all group scale-100 hover:scale-105"
         aria-label="Ouvrir l'Archiviste KAMA"
       >
         <span className="w-2.5 h-2.5 rounded-full bg-[#F2B844] animate-pulse" />

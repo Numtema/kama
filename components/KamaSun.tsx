@@ -16,47 +16,94 @@ export function KamaSun({
   animate = false,
   color = '#F2B844'
 }: KamaSunProps) {
+  // Generate 16 solar rays (8 primary tapered crown rays + 8 secondary diamond rays)
+  const primaryRays = [0, 45, 90, 135, 180, 225, 270, 315];
+  const secondaryRays = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
+
   return (
     <div 
       className={`inline-flex items-center justify-center relative flex-shrink-0 ${className}`}
       style={{ width: size, height: size }}
+      aria-label="KAMA Sun"
     >
       <motion.svg
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full overflow-visible"
-        animate={animate ? { rotate: [0, 6, -6, 0] } : undefined}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={animate ? { rotate: 360 } : undefined}
+        transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
       >
-        {/* Subtle glow aura */}
-        <circle cx="50" cy="50" r="28" fill={color} fillOpacity="0.18" />
-        
-        {/* Core central sun disc */}
-        <circle cx="50" cy="50" r="18" fill={color} />
-        
-        {/* Inner subtle core */}
-        <circle cx="50" cy="50" r="10" fill="#FFF2CE" fillOpacity="0.4" />
+        <defs>
+          <radialGradient id={`sun-glow-${size}`} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor={color} stopOpacity="0.45" />
+            <stop offset="60%" stopColor={color} stopOpacity="0.15" />
+            <stop offset="100%" stopColor={color} stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-        {/* 8 Symmetrical sleek editorial solar rays */}
-        {/* Cardinal North */}
-        <line x1="50" y1="18" x2="50" y2="4" stroke={color} strokeWidth="4.5" strokeLinecap="round" />
-        {/* Cardinal South */}
-        <line x1="50" y1="82" x2="50" y2="96" stroke={color} strokeWidth="4.5" strokeLinecap="round" />
-        {/* Cardinal West */}
-        <line x1="18" y1="50" x2="4" y2="50" stroke={color} strokeWidth="4.5" strokeLinecap="round" />
-        {/* Cardinal East */}
-        <line x1="82" y1="50" x2="96" y2="50" stroke={color} strokeWidth="4.5" strokeLinecap="round" />
+        {/* Ambient atmospheric solar halo */}
+        <circle cx="50" cy="50" r="46" fill={`url(#sun-glow-${size})`} />
 
-        {/* Diagonal North-West */}
-        <line x1="27" y1="27" x2="16" y2="16" stroke={color} strokeWidth="3.5" strokeLinecap="round" strokeOpacity="0.85" />
-        {/* Diagonal North-East */}
-        <line x1="73" y1="27" x2="84" y2="16" stroke={color} strokeWidth="3.5" strokeLinecap="round" strokeOpacity="0.85" />
-        {/* Diagonal South-West */}
-        <line x1="27" y1="73" x2="16" y2="84" stroke={color} strokeWidth="3.5" strokeLinecap="round" strokeOpacity="0.85" />
-        {/* Diagonal South-East */}
-        <line x1="73" y1="73" x2="84" y2="84" stroke={color} strokeWidth="3.5" strokeLinecap="round" strokeOpacity="0.85" />
+        {/* 8 Primary Majestic Tapered Solar Rays */}
+        {primaryRays.map((angle) => (
+          <g key={`primary-${angle}`} transform={`rotate(${angle} 50 50)`}>
+            {/* Tapered triangular solar ray */}
+            <path
+              d="M46.5 24L50 4L53.5 24C52.2 24.5 50 25 46.5 24Z"
+              fill={color}
+            />
+          </g>
+        ))}
+
+        {/* 8 Secondary Diamond Inter-Rays */}
+        {secondaryRays.map((angle) => (
+          <g key={`secondary-${angle}`} transform={`rotate(${angle} 50 50)`}>
+            <path
+              d="M48 24.5L50 11L52 24.5C51.2 24.8 50 25 48 24.5Z"
+              fill={color}
+              fillOpacity="0.9"
+            />
+          </g>
+        ))}
+
+        {/* Outer Solar Ring / Orbit */}
+        <circle
+          cx="50"
+          cy="50"
+          r="23.5"
+          stroke={color}
+          strokeWidth="1.75"
+          strokeOpacity="0.6"
+        />
+
+        {/* Core Living Sun Disc */}
+        <circle
+          cx="50"
+          cy="50"
+          r="19"
+          fill={color}
+        />
+
+        {/* Inner Luminous Core Accent */}
+        <circle
+          cx="50"
+          cy="50"
+          r="12.5"
+          fill="#FFF9E6"
+          fillOpacity="0.3"
+        />
+
+        {/* Central Solar Spark */}
+        <circle
+          cx="50"
+          cy="50"
+          r="5.5"
+          fill="#FFFDF7"
+          fillOpacity="0.75"
+        />
       </motion.svg>
     </div>
   );
 }
+
