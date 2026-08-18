@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { Play, BookOpen, Clock, ArrowRight, ShieldCheck, Sparkles, Volume2 } from 'lucide-react';
@@ -84,10 +85,13 @@ export function DiscoverBento({ onSelectEntity }: DiscoverBentoProps) {
             className="md:col-span-5 rounded-3xl overflow-hidden bg-stone-900 border border-stone-800 shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group p-6 sm:p-8 relative text-white"
           >
             <div className="absolute inset-0 z-0">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
                 alt="Archive Thomas Sankara"
-                className="w-full h-full object-cover opacity-45 group-hover:scale-105 group-hover:opacity-60 transition-all duration-700"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                referrerPolicy="no-referrer"
+                className="object-cover opacity-45 group-hover:scale-105 group-hover:opacity-60 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
             </div>
@@ -128,11 +132,14 @@ export function DiscoverBento({ onSelectEntity }: DiscoverBentoProps) {
             className="md:col-span-4 rounded-3xl bg-white border border-[#121210]/10 p-6 shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group"
           >
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0">
-                <img
+              <div className="w-12 h-12 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
+                <Image
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
                   alt="Reine Nzinga"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  fill
+                  sizes="48px"
+                  referrerPolicy="no-referrer"
+                  className="object-cover group-hover:scale-105 transition-transform"
                 />
               </div>
               <div>

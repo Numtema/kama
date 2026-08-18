@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { User, Quote, ArrowRight, Sparkles } from 'lucide-react';
@@ -46,10 +47,13 @@ export function PeopleShowcase({ onSelectPerson }: PeopleShowcaseProps) {
             >
               {/* Image with subtle duotone & hover color reveal */}
               <div className="w-full aspect-[4/4.5] overflow-hidden relative bg-stone-900">
-                <img
+                <Image
                   src={person.image}
                   alt={person.name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  referrerPolicy="no-referrer"
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                 

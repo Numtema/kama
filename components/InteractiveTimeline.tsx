@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { Clock, ArrowRight, ShieldCheck, Sparkles, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -321,10 +322,13 @@ export function InteractiveTimeline({ onSelectEntity }: InteractiveTimelineProps
 
               {/* Right Media Preview (5 cols) */}
               <div className="lg:col-span-5 h-64 sm:h-72 rounded-2xl overflow-hidden relative shadow-md bg-stone-200">
-                <img
+                <Image
                   src={selectedEvent.image}
                   alt={selectedEvent.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  referrerPolicy="no-referrer"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">

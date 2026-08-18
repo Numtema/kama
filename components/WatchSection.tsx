@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { 
@@ -90,10 +91,13 @@ export function WatchSection({ onSelectEntity }: WatchSectionProps) {
             >
               {/* Video Thumbnail */}
               <div className="w-full aspect-[16/10] relative overflow-hidden bg-black">
-                <img
+                <Image
                   src={media.thumbnail}
                   alt={media.title}
-                  className="w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  referrerPolicy="no-referrer"
+                  className="object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 

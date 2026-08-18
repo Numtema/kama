@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   User, 
@@ -101,10 +102,13 @@ export function ExplorePillars({ onSelectEntity }: ExplorePillarsProps) {
                   className="group rounded-3xl bg-white border border-[#121210]/10 overflow-hidden shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between"
                 >
                   <div className="h-44 w-full relative overflow-hidden bg-stone-200">
-                    <img
+                    <Image
                       src={civ.image}
                       alt={civ.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      referrerPolicy="no-referrer"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <span className="absolute bottom-3 left-4 text-xs font-mono font-bold text-[#F2B844] bg-black/50 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
@@ -153,10 +157,13 @@ export function ExplorePillars({ onSelectEntity }: ExplorePillarsProps) {
                 >
                   <div>
                     <div className="w-full aspect-square rounded-2xl overflow-hidden bg-stone-200 mb-4 relative">
-                      <img
+                      <Image
                         src={person.image}
                         alt={person.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        referrerPolicy="no-referrer"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-xs">
                         {person.birthYear} – {person.deathYear || 'Présent'}

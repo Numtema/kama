@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { Sparkles, MapPin, Quote, ShieldCheck, ArrowRight, BookOpen, Volume2 } from 'lucide-react';
@@ -98,14 +99,17 @@ export function KamaStoriesImmersive({ onSelectEntity }: KamaStoriesImmersivePro
 
             {/* Media Image if present */}
             {story.chapters[activeChapter].mediaUrl && (
-              <div className="my-6 rounded-2xl overflow-hidden shadow-lg border border-white/10">
-                <img
+              <div className="my-6 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative h-64 sm:h-80 w-full">
+                <Image
                   src={story.chapters[activeChapter].mediaUrl}
                   alt="Illustration historique"
-                  className="w-full h-64 sm:h-80 object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  referrerPolicy="no-referrer"
+                  className="object-cover"
                 />
                 {story.chapters[activeChapter].mediaCaption && (
-                  <p className="p-3 bg-black/60 text-xs text-stone-300 italic">
+                  <p className="absolute bottom-0 inset-x-0 p-3 bg-black/60 text-xs text-stone-300 italic">
                     {story.chapters[activeChapter].mediaCaption}
                   </p>
                 )}

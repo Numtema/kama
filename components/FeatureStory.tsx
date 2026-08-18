@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { 
@@ -116,10 +117,13 @@ export function FeatureStory({
         {/* Hero Image Showcase */}
         <div className="rounded-3xl overflow-hidden shadow-md bg-stone-900 border border-[#121210]/10 my-8">
           <div className="relative aspect-[16/9] w-full">
-            <img
+            <Image
               src={dossier.heroImage}
               alt={dossier.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
+              referrerPolicy="no-referrer"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 text-white text-xs">

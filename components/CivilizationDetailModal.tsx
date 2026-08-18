@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { 
@@ -73,10 +74,13 @@ export function CivilizationDetailModal({
             
             {/* Hero Image & Headline */}
             <div className="h-56 sm:h-64 rounded-2xl overflow-hidden relative bg-stone-900 shadow-md">
-              <img
+              <Image
                 src={civilization.image}
                 alt={civilization.name}
-                className="w-full h-full object-cover opacity-80"
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                referrerPolicy="no-referrer"
+                className="object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 text-white">

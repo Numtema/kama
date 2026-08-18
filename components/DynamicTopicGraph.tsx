@@ -421,7 +421,7 @@ export function DynamicTopicGraph({
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {branch.highlightedEntities.map((entity, eIdx) => (
                                   <div
-                                    key={eIdx}
+                                    key={`branch-${branch.id}-entity-${entity.id || eIdx}-${eIdx}`}
                                     onClick={() => onSelectEntity && onSelectEntity(entity.type, entity.id)}
                                     className="p-2.5 rounded-xl bg-white hover:bg-[#FFF2CE]/60 border border-[#121210]/8 transition-all cursor-pointer group flex items-start justify-between gap-2"
                                   >
@@ -570,9 +570,9 @@ export function DynamicTopicGraph({
                       Fiches & Portails associés :
                     </span>
                     <div className="space-y-2">
-                      {effectiveSelectedNode.highlightedEntities.map((ent) => (
+                      {effectiveSelectedNode.highlightedEntities.map((ent, entIdx) => (
                         <div
-                          key={ent.id}
+                          key={`inspector-${effectiveSelectedNode.id}-ent-${ent.id || entIdx}-${entIdx}`}
                           onClick={() => onSelectEntity && onSelectEntity(ent.type, ent.id)}
                           className="p-3 rounded-2xl bg-[#FAF9F5] hover:bg-[#FFF2CE] border border-[#121210]/8 transition-all cursor-pointer flex items-center justify-between group"
                         >

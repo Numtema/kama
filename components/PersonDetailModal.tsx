@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { 
@@ -74,11 +75,14 @@ export function PersonDetailModal({
             
             {/* Top Profile Summary */}
             <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0 shadow-md">
-                <img
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0 shadow-md relative">
+                <Image
                   src={person.image}
                   alt={person.name}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 112px, 144px"
+                  referrerPolicy="no-referrer"
+                  className="object-cover"
                 />
               </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { ArrowRight, Compass, Sparkles, BookOpen, Globe2, ShieldCheck } from 'lucide-react';
@@ -118,10 +119,13 @@ export function HeroSection({
             >
               {/* Background Archive Image with subtle zoom on hover */}
               <div className="absolute inset-0 z-0">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1200&q=80"
                   alt="Mansa Moussa et l'Empire du Mali"
-                  className="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-700 ease-out"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  referrerPolicy="no-referrer"
+                  className="object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30" />
               </div>

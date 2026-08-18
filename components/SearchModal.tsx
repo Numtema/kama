@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Search, 
@@ -226,8 +227,15 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                               className="group flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#FFF2CE]/40 border border-[#121210]/6 hover:border-[#F2B844]/60 cursor-pointer transition-all"
                             >
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full overflow-hidden bg-stone-200 flex-shrink-0">
-                                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                                <div className="w-10 h-10 rounded-full overflow-hidden bg-stone-200 flex-shrink-0 relative">
+                                  <Image
+                                    src={p.image}
+                                    alt={p.name}
+                                    fill
+                                    sizes="40px"
+                                    referrerPolicy="no-referrer"
+                                    className="object-cover"
+                                  />
                                 </div>
                                 <div>
                                   <h4 className="text-sm font-bold text-[#121210] group-hover:text-[#A65438] transition-colors">
@@ -288,8 +296,15 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                               className="group flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#FFF2CE]/40 border border-[#121210]/6 hover:border-[#F2B844]/60 cursor-pointer transition-all"
                             >
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0">
-                                  <img src={c.image} alt={c.name} className="w-full h-full object-cover" />
+                                <div className="w-10 h-10 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
+                                  <Image
+                                    src={c.image}
+                                    alt={c.name}
+                                    fill
+                                    sizes="40px"
+                                    referrerPolicy="no-referrer"
+                                    className="object-cover"
+                                  />
                                 </div>
                                 <div>
                                   <h4 className="text-sm font-bold text-[#121210] group-hover:text-[#A65438] transition-colors">
@@ -319,8 +334,15 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                               className="group flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#FFF2CE]/40 border border-[#121210]/6 hover:border-[#F2B844]/60 cursor-pointer transition-all"
                             >
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0">
-                                  <img src={a.heroImage} alt={a.title} className="w-full h-full object-cover" />
+                                <div className="w-10 h-10 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
+                                  <Image
+                                    src={a.heroImage}
+                                    alt={a.title}
+                                    fill
+                                    sizes="40px"
+                                    referrerPolicy="no-referrer"
+                                    className="object-cover"
+                                  />
                                 </div>
                                 <div>
                                   <h4 className="text-sm font-bold text-[#121210] group-hover:text-[#A65438] transition-colors line-clamp-1">
@@ -351,7 +373,14 @@ export function SearchModal({ isOpen, onClose, onSelectEntity }: SearchModalProp
                             >
                               <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
-                                  <img src={v.thumbnail} alt={v.title} className="w-full h-full object-cover" />
+                                  <Image
+                                    src={v.thumbnail}
+                                    alt={v.title}
+                                    fill
+                                    sizes="40px"
+                                    referrerPolicy="no-referrer"
+                                    className="object-cover"
+                                  />
                                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                                     <Video className="w-4 h-4 text-white" />
                                   </div>
