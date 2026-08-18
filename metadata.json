@@ -1,0 +1,6 @@
+{
+  "name": "KAMA - The Living Archive",
+  "description": "KAMA : La bibliothèque vivante de l'histoire noire et des cultures diasporiques. Explorez les personnes, civilisations, récits, archives et chronologies interconnectées.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
