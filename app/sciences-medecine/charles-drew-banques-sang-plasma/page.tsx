@@ -29,6 +29,26 @@ export default function CharlesDrewArticlePage() {
   const [selectedPerson, setSelectedPerson] = useState<HistoricalPerson | null>(null);
   const [selectedCivilization, setSelectedCivilization] = useState<Civilization | null>(null);
 
+  // Slider / Carousel state
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slides = [
+    {
+      url: "https://upload.wikimedia.org/wikipedia/commons/1/10/BGBBFJ_Charles_R._Drew.jpg",
+      caption: "Charles Drew avec des résidents au Freedmen’s Hospital, vers 1945. Harris & Ewing / Howard University / NLM. Domaine public.",
+      alt: "Charles Drew assis avec des résidents médicaux au Freedmen's Hospital."
+    },
+    {
+      url: "https://upload.wikimedia.org/wikipedia/commons/3/3d/DR._CHARLES_RICHARD_DREW%2C_M.D.%2C_C.M.%2C_MED._D.Sc._-_PROFESSOR_OF_SURGERY%2C_HOWARD_UNIVERSTITY%2C_CHIEF_SURGEON..._-_NARA_-_535693.jpg",
+      caption: "Affiche biographique de Charles Drew publiée en 1943 par l'Office of War Information. NARA. Domaine public.",
+      alt: "Affiche biographique de guerre de 1943."
+    },
+    {
+      url: "https://upload.wikimedia.org/wikipedia/commons/9/99/Portrait_of_Charles_Drew.jpg",
+      caption: "Portrait de studio officiel de Charles Richard Drew vers 1949. NLM / Moorland-Spingarn. Domaine public.",
+      alt: "Portrait officiel de Charles Richard Drew."
+    }
+  ];
+
   // Keyboard shortcut for Search (⌘K / Ctrl+K)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -647,15 +667,44 @@ export default function CharlesDrewArticlePage() {
 
             <div className="max-w-[1120px] mx-auto mb-8">
               <figure className="m-0">
-                <div className="aspect-[4/3] max-w-[600px] overflow-hidden bg-stone-300 rounded-[14px] border border-[#30343c] mx-auto">
+                <div className="relative aspect-[4/3] max-w-[600px] overflow-hidden bg-[#ece9df] rounded-[14px] border border-[#30343c] mx-auto flex items-center justify-center">
                   <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/1/10/BGBBFJ_Charles_R._Drew.jpg"
-                    alt="Charles Drew assis avec des résidents médicaux au Freedmen's Hospital vers 1945."
-                    className="w-full h-full object-cover block"
+                    src={slides[activeSlide].url}
+                    alt={slides[activeSlide].alt}
+                    className="w-full h-full object-contain block"
                   />
+                  
+                  {/* Prev Button */}
+                  <button 
+                    onClick={() => setActiveSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-stone-800 flex items-center justify-center shadow-md transition-colors cursor-pointer border border-stone-200 font-bold"
+                    aria-label="Image précédente"
+                  >
+                    ←
+                  </button>
+
+                  {/* Next Button */}
+                  <button 
+                    onClick={() => setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-stone-800 flex items-center justify-center shadow-md transition-colors cursor-pointer border border-stone-200 font-bold"
+                    aria-label="Image suivante"
+                  >
+                    →
+                  </button>
+
+                  {/* Dot Indicators */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/45 px-3 py-1 rounded-full backdrop-blur-xs">
+                    {slides.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveSlide(idx)}
+                        className={`w-2 h-2 rounded-full transition-all cursor-pointer ${idx === activeSlide ? 'bg-white scale-110' : 'bg-white/55'}`}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <figcaption className="text-[#77746A] text-[0.82rem] mt-2 text-center">
-                  Charles Drew avec des résidents au Freedmen’s Hospital, vers 1945. Harris & Ewing / Howard University / NLM. La version Commons est marquée domaine public.
+                <figcaption className="text-[#77746A] text-[0.82rem] mt-2 text-center max-w-[600px] mx-auto leading-relaxed">
+                  {slides[activeSlide].caption}
                 </figcaption>
               </figure>
             </div>
@@ -680,6 +729,7 @@ export default function CharlesDrewArticlePage() {
               <li><span className="kind">Archive.</span> <a href="https://profiles.nlm.nih.gov/spotlight/bg/" target="_blank" rel="noopener noreferrer">National Library of Medicine — The Charles R. Drew Papers</a>.</li>
               <li><span className="kind">Chronologie.</span> <a href="https://profiles.nlm.nih.gov/spotlight/bg/feature/biographical-information" target="_blank" rel="noopener noreferrer">NLM — Brief Chronology</a>.</li>
               <li><span className="kind">Howard Univ.</span> <a href="https://profiles.nlm.nih.gov/spotlight/bg/feature/my-chief-interest-was-and-is-surgery-howard-university-1941-1950" target="_blank" rel="noopener noreferrer">NLM — My Chief Interest Was and Is Surgery (1941-1950)</a>.</li>
+              <li><span className="kind">Collection.</span> <a href="https://profiles.nlm.nih.gov/spotlight/bg/browse" target="_blank" rel="noopener noreferrer">NLM — The Charles R. Drew Papers (Collection d'archives complète)</a>.</li>
             </ul>
 
             <div className="article-method">
