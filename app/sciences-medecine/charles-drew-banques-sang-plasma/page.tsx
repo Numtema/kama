@@ -586,6 +586,14 @@ export default function CharlesDrewArticlePage() {
               Pour Drew, la formation chirurgicale était pourtant une ambition centrale. Il voulait préparer de jeunes chirurgiens noirs aux standards les plus exigeants, les aider à poursuivre des spécialisations, à accéder aux sociétés professionnelles et à créer à leur tour des pôles de formation. En décembre 1948, son premier groupe de résidents réussit les examens du Board of Surgery ; la NLM souligne l’importance de son programme dans la formation des chirurgiens noirs certifiés de la période.
             </p>
 
+            <h2 id="former" className="article-h2">Former des médecins dans un système d'exclusion</h2>
+            <p className="article-p">
+              Un discours prononcé au Temple Israel Brotherhood à Boston le 21 mars 1946 montre Drew analysant lui-même les obstacles à la formation médicale des Afro-Américains. Il insiste sur deux causes : le coût très élevé des études médicales dans une population largement appauvrie et les politiques d’exclusion des facultés, hôpitaux et programmes de spécialisation.
+            </p>
+            <p className="article-p">
+              Il ne parle pas seulement d’un manque abstrait de diversité. Il décrit un mécanisme institutionnel : faible accès aux écoles de médecine, rareté des internats et résidences ouverts aux médecins noirs, puis effets en cascade sur les privilèges hospitaliers, la spécialisation et la distribution géographique des soins. Les statistiques précises qu’il cite dans ce discours doivent être attribuées à ses sources de l’époque si elles sont reprises, mais son diagnostic institutionnel est sans ambiguïté.
+            </p>
+
             <h2 id="ce-que-drew-n-a-pas-invente" className="article-h2">Ce que Drew n’a pas inventé</h2>
             <p className="article-p">
               Drew n’a pas inventé la transfusion sanguine. Il n’a pas découvert le plasma. Il n’a pas inventé les groupes sanguins. Il n’a pas créé le premier service de sang conservé. Il n’a pas inventé seul la banque de sang et il n’a pas inventé la lyophilisation du plasma.
@@ -606,9 +614,23 @@ export default function CharlesDrewArticlePage() {
             <p className="article-p">
               Le 1er avril 1950, Drew est grièvement blessé dans un accident automobile près de Burlington, en Caroline du Nord, alors qu’il se rend avec plusieurs collègues à une clinique médicale à Tuskegee. Il est transporté à Alamance General Hospital. Des médecins tentent de le sauver et lui administrent des transfusions, mais ses blessures sont mortelles.
             </p>
-            <p className="article-p">
-              L’histoire selon laquelle Drew aurait été refusé par un hôpital blanc ou privé d’une transfusion à cause de sa couleur de peau est réfutée par les témoignages de ses compagnons, des personnes présentes à l’hôpital et de sa famille, tels qu’ils sont rassemblés par la National Library of Medicine. La légende reste néanmoins un objet historique intéressant : elle a prospéré dans une société où la ségrégation médicale était, elle, bien réelle. Une histoire fausse sur la mort de Drew ne doit donc pas être utilisée comme preuve ; elle peut en revanche être étudiée comme histoire de la mémoire.
-            </p>
+            <h2 id="chronologie" className="article-h2">Chronologie de travail</h2>
+            <div className="article-timeline">
+              <div><b>3 juin 1904</b> — Naissance à Washington, D.C.</div>
+              <div><b>1938-1940</b> — Travail à Columbia/Presbyterian Hospital sur la conservation du sang.</div>
+              <div><b>1940</b> — Thèse Banked Blood ; doctorat en sciences médicales ; projet de retour à Howard.</div>
+              <div><b>Août 1940-janvier 1941</b> — Blood for Britain.</div>
+              <div><b>Septembre 1940</b> — Drew devient Medical Supervisor à plein temps du programme.</div>
+              <div><b>31 janvier 1941</b> — Rapport final Blood for Britain (14 556 dons et ~5 500 L de plasma).</div>
+              <div><b>Février-avril 1941</b> — Programme pilote de banque de sang de l’American Red Cross.</div>
+              <div><b>Avril 1941</b> — Retour à Howard University.</div>
+              <div><b>Octobre 1941</b> — Responsable du Department of Surgery ; chief surgeon au Freedmen’s Hospital ; examinateur American Board of Surgery.</div>
+              <div><b>1942-1944</b> — Opposition documentée aux politiques raciales appliquées aux dons et au sang.</div>
+              <div><b>21 mars 1946</b> — Discours Temple Israel Brotherhood : formation médicale, pauvreté et exclusion.</div>
+              <div><b>1948</b> — Premier groupe de résidents réussissant les examens de certification.</div>
+              <div><b>1949</b> — Consultant chirurgical auprès du Surgeon General ; mission en Europe.</div>
+              <div><b>1er avril 1950</b> — Accident automobile et décès à Alamance General Hospital.</div>
+            </div>
 
             <div className="article-grid-archive">
               <a href="https://www.profiles.nlm.nih.gov/spotlight/bg/catalog/nlm%3Anlmuid-101584649X73-img" rel="noopener" target="_blank" className="article-card-archive">
@@ -682,9 +704,11 @@ export default function CharlesDrewArticlePage() {
             <a href="#le-programme-pilote-de-la-croix-rouge">Croix-Rouge</a>
             <a href="#race-et-sang-ce-que-drew-dit-reellement">Race et sang</a>
             <a href="#howard-son-projet-principal-devient-la-chirurgie">Howard</a>
+            <a href="#former">Former des médecins</a>
             <a href="#ce-que-drew-n-a-pas-invente">Ce qu’il n’a pas inventé</a>
             <a href="#ce-qu-il-a-reellement-change">Ce qu’il a changé</a>
             <a href="#la-mort-de-drew-et-la-legende-de-l-hopital">Mort et légende</a>
+            <a href="#chronologie">Chronologie</a>
             <a href="#contribuer">Enrichir l'archive</a>
             <a href="#sources">Sources</a>
           </aside>
