@@ -98,6 +98,26 @@ export const HISTORICAL_SOURCES: Record<string, HistoricalSource> = {
     archiveInstitution: 'Tradition orale mandingue & UNESCO Intangible Cultural Heritage',
     excerpt: 'Toute vie humaine est une vie. Une vie ne vaut pas plus qu’une autre. Que nul ne fasse tort à autrui.',
     reliabilityNote: 'Proclamée en 1236, l’une des plus anciennes déclarations des droits humains inscrite par l’UNESCO.'
+  },
+  drew_banked_blood: {
+    id: 'drew_banked_blood',
+    title: 'Banked Blood: A Study in Blood Preservation',
+    author: 'Charles R. Drew',
+    year: 1940,
+    type: 'primary',
+    archiveInstitution: 'Columbia University / National Library of Medicine',
+    excerpt: 'The preservation of blood and plasma is studied under various conditions to establish standard safety controls.',
+    reliabilityNote: 'Thèse de doctorat séminale sur la conservation du sang.'
+  },
+  drew_report_britain: {
+    id: 'drew_report_britain',
+    title: 'Report on Supplying Blood Plasma to England (Blood for Britain)',
+    author: 'Blood Transfusion Association',
+    year: 1941,
+    type: 'primary',
+    archiveInstitution: 'National Library of Medicine (Charles R. Drew Papers)',
+    excerpt: 'A total of 14,556 donations were processed, yielding approximately 5,500 liters of plasma-saline solution.',
+    reliabilityNote: 'Rapport officiel final du superviseur médical du programme.'
   }
 };
 
@@ -219,6 +239,34 @@ export const HISTORICAL_PEOPLE: HistoricalPerson[] = [
     ],
     sources: [],
     dossierId: 'frederick-mckinley-jones-refrigeration-mobile'
+  },
+  {
+    id: 'charles-drew',
+    name: 'Charles Richard Drew',
+    title: 'Pionnier de la Conservation du Sang & Chirurgien',
+    birthYear: 1904,
+    deathYear: 1950,
+    place: 'Washington, D.C. / Alamance Hospital',
+    region: 'Amérique du Nord & Diaspora',
+    era: 'Sciences & Médecine (XXe siècle)',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Portrait_of_Charles_Drew.jpg',
+    summary: 'Chirurgien et chercheur afro-américain de premier plan, il a révolutionné la conservation du sang et standardisé les premières banques de sang à grande échelle dans le cadre du projet Blood for Britain et de la Croix-Rouge américaine.',
+    keyContributions: [
+      'Thèse de doctorat "Banked Blood" (1940) établissant les bases scientifiques de la conservation',
+      'Superviseur médical du programme "Blood for Britain" (1940-1941) pour standardiser la collecte de plasma',
+      'Direction scientifique du projet pilote de banque de sang de la Croix-Rouge américaine',
+      'Formation et mentorat d\'une génération de chirurgiens noirs certifiés à Howard University'
+    ],
+    quote: {
+      text: 'Nous pouvons voir la fin des banques de sang si les préjugés continuent à dominer la science.',
+      context: 'Correspondance et opposition à la ségrégation du sang',
+      year: 1942
+    },
+    connectedEntities: [
+      { id: 'charles-drew-banques-sang-plasma', type: 'article', title: 'Charles Drew et les banques de sang : ce qu’il a réellement inventé, organisé et transmis', relationship: 'Dossier complet' }
+    ],
+    sources: [HISTORICAL_SOURCES.drew_banked_blood, HISTORICAL_SOURCES.drew_report_britain],
+    dossierId: 'charles-drew-banques-sang-plasma'
   },
   {
     id: 'toussaint-louverture',

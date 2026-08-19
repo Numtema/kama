@@ -69,6 +69,14 @@ export default function HomePage() {
         return;
       }
     } else if (type === 'article' || type === 'story') {
+      if (id === 'frederick-mckinley-jones-refrigeration-mobile') {
+        window.location.href = '/sciences-techniques/frederick-mckinley-jones-refrigeration-mobile';
+        return;
+      }
+      if (id === 'charles-drew-banques-sang-plasma') {
+        window.location.href = '/sciences-medecine/charles-drew-banques-sang-plasma';
+        return;
+      }
       const el = document.getElementById('grande-histoire') || document.getElementById('stories');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
