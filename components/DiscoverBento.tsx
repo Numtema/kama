@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import { KamaSun } from './KamaSun';
 import { Play, BookOpen, Clock, ArrowRight, ShieldCheck, Sparkles, Volume2 } from 'lucide-react';
@@ -124,43 +125,43 @@ export function DiscoverBento({ onSelectEntity }: DiscoverBentoProps) {
             </div>
           </motion.div>
 
-          {/* Card 3: Queen Nzinga - 4 cols */}
-          <motion.div
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => onSelectEntity('person', 'queen-nzinga')}
-            className="md:col-span-4 rounded-3xl bg-white border border-[#121210]/10 p-6 shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
-                <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
-                  alt="Reine Nzinga"
-                  fill
-                  sizes="48px"
-                  referrerPolicy="no-referrer"
-                  className="object-cover group-hover:scale-105 transition-transform"
-                />
+          {/* Card 3: Frederick McKinley Jones - 4 cols */}
+          <Link href="/sciences-techniques/frederick-mckinley-jones-refrigeration-mobile" className="md:col-span-4 block">
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="rounded-3xl bg-white border border-[#121210]/10 p-6 shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group h-full text-left"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl overflow-hidden bg-stone-200 flex-shrink-0 relative">
+                  <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/25/Fred_McKinley_Jones_USDA.jpg"
+                    alt="Frederick McKinley Jones"
+                    fill
+                    sizes="48px"
+                    className="object-cover group-hover:scale-105 transition-transform"
+                  />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#A65438]">
+                    Sciences & Froid
+                  </span>
+                  <h4 className="text-base font-bold text-[#121210] group-hover:text-[#A65438] transition-colors">
+                    Frederick McKinley Jones
+                  </h4>
+                </div>
               </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-[#A65438]">
-                  Résistance Royale
-                </span>
-                <h4 className="text-base font-bold text-[#121210] group-hover:text-[#A65438] transition-colors">
-                  Reine Nzinga Mbande
-                </h4>
+
+              <p className="text-xs text-[#46443D] my-4 leading-relaxed line-clamp-3">
+                Comment un ingénieur autodidacte a conçu des systèmes autonomes pour climatiser les transports et fiabiliser la chaîne du froid.
+              </p>
+
+              <div className="pt-3 border-t border-[#121210]/8 flex items-center justify-between text-xs font-semibold text-[#121210]">
+                <span className="text-[#77746A]">1893 – 1961</span>
+                <span className="group-hover:translate-x-1 transition-transform">Lire le dossier →</span>
               </div>
-            </div>
-
-            <p className="text-xs text-[#46443D] my-4 leading-relaxed line-clamp-3">
-              Quarante années de résistance diplomatique et militaire contre la couronne portugaise pour préserver la souveraineté du Ndongo et Matamba.
-            </p>
-
-            <div className="pt-3 border-t border-[#121210]/8 flex items-center justify-between text-xs font-semibold text-[#121210]">
-              <span className="text-[#77746A]">1583 – 1663</span>
-              <span className="group-hover:translate-x-1 transition-transform">Voir biographie →</span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* Card 4: Event - Charte de Kouroukan Fouga (1236) - 4 cols */}
           <motion.div

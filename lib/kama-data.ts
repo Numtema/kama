@@ -193,6 +193,34 @@ export const HISTORICAL_PEOPLE: HistoricalPerson[] = [
     sources: [HISTORICAL_SOURCES.unesco_general_history]
   },
   {
+    id: 'frederick-jones',
+    name: 'Frederick McKinley Jones',
+    title: 'Ingénieur & Pionnier de la Réfrigération Mobile',
+    birthYear: 1893,
+    deathYear: 1961,
+    place: 'Cincinnati / Minneapolis',
+    region: 'Amérique du Nord & Diaspora',
+    era: 'Inventions & Révolutions Industrielles (1900–1960)',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Fred_McKinley_Jones_USDA.jpg',
+    summary: 'Ingénieur et inventeur autodidacte afro-américain, il a révolutionné le transport de denrées périssables en co-fondant Thermo King et en développant le premier groupe frigorifique mobile et automatisé adapté aux camions routiers.',
+    keyContributions: [
+      'Co-développement et brevet du premier système de réfrigération mobile amovible pour véhicules (US 2,303,857) en 1939',
+      'Invention du groupe frigorifique autonome frontal (Model C / US 2,336,735) en 1941',
+      'Obtention de plus de 60 brevets industriels au cours de sa carrière',
+      'Premier Afro-Américain récipiendaire de la National Medal of Technology en 1991 à titre posthume'
+    ],
+    quote: {
+      text: 'Croyez en vous-même et ne laissez pas les autres vous dire ce que vous ne pouvez pas faire.',
+      context: 'Mémoires et conseils aux jeunes inventeurs',
+      year: 1954
+    },
+    connectedEntities: [
+      { id: 'frederick-mckinley-jones-refrigeration-mobile', type: 'article', title: 'Frederick McKinley Jones et la naissance de la réfrigération mobile moderne', relationship: 'Dossier complet' }
+    ],
+    sources: [],
+    dossierId: 'frederick-mckinley-jones-refrigeration-mobile'
+  },
+  {
     id: 'toussaint-louverture',
     name: 'Toussaint Louverture',
     title: 'Gouverneur Général & Stratège de la Révolution Haïtienne',
